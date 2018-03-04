@@ -53,13 +53,13 @@ public class HomingMissle : MonoBehaviour {
 
         //Debug.Log(col);
 
-        if (col.gameObject.tag != "Player" && col.gameObject.tag != "Missle")
+       /* if (col.gameObject.tag != "Player" && col.gameObject.tag != "Missle")
         {
             GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
             GameObject.Destroy(gameObject, 0);
-        }
+        }*/
 
-        else if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
             col.gameObject.GetComponent<PlayerMovement>().Respawn();

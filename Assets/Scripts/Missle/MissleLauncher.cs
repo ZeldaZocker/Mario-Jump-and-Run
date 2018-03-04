@@ -15,6 +15,14 @@ public class MissleLauncher : MonoBehaviour {
         StartCoroutine(MissleLaunching());
     }
 
+    void Update()
+    {
+        if (missles < 0)
+        {
+            missles = 0;
+        }
+    }
+
     IEnumerator MissleLaunching()
     {
         while (true)
