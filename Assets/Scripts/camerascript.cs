@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,10 @@ public class camerascript : MonoBehaviour {
 
 	}
 
+    private void Update()
+    {
+        targets[0] = GameObject.Find("Player").GetComponent<Transform>();
+    }
 
     Vector3 GetCenterPoint()
     {

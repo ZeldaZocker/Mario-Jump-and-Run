@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundDetection : MonoBehaviour {
+public class GroundDetection : MonoBehaviour
+{
 
 
     public LayerMask whatIsGround;
@@ -12,15 +13,17 @@ public class GroundDetection : MonoBehaviour {
     public float angle = 0.0f;
     public bool onGround;
 
-    void Start () {
+    void Start()
+    {
         jump = GameObject.Find("Player").GetComponent<jump>();
         //Debug.Log("Ground Layer: " + LayerMask.NameToLayer("ground"));
         onGround = GameObject.Find("Player").GetComponent<jump>().grounded;
         groundCheck = GetComponent<Transform>();
     }
-	
 
-	void FixedUpdate () {
+
+    void FixedUpdate()
+    {
 
 
         GameObject.Find("Player").GetComponent<jump>().grounded = Physics2D.OverlapBox(groundCheck.position, size, angle, whatIsGround);
@@ -37,16 +40,5 @@ public class GroundDetection : MonoBehaviour {
             onGround = GameObject.Find("Player").GetComponent<jump>().grounded;
             jump.jumpReset();
         }
-	}
-
-
-
-   /* void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "ground")
-        {
-            var jumpScript = GameObject.Find("Player").GetComponent<jump>();
-            jumpScript.jumpReset();
-        }
-    }*/
+    }
 }

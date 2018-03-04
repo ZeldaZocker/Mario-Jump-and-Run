@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +8,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 15f;
     private Rigidbody2D rb;
     private bool facingRight = true;
-    Vector2 move;
+    private Vector2 move;
     float moveHorizontal;
+    public Transform trans;
+    public bool spawned = false;
+    public Vector2 spawn;
+
 
 
 
@@ -17,9 +21,17 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    
 
     void Update()
     {
+        if (spawned == false && GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>() != null)
+        {
+            GetComponent<Transform>().position = GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
+            spawn = GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
+            spawned = true;
+        }
+
         if (Input.GetAxis("Horizontal") > 0 && !facingRight)
             // ... flip the player.
             Flip();
@@ -59,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Respawn ()
     {
-        transform.position = new Vector3(-2.5f, 3.3f, 0f);
+        transform.position = spawn;
     }
     
 

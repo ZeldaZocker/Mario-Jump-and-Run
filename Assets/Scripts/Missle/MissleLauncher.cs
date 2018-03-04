@@ -6,7 +6,6 @@ public class MissleLauncher : MonoBehaviour {
 
     public GameObject missle;
     public Transform bulletSpawn;
-    public int missles = 0;
 
 
 
@@ -15,28 +14,19 @@ public class MissleLauncher : MonoBehaviour {
         StartCoroutine(MissleLaunching());
     }
 
-    void Update()
-    {
-        if (missles < 0)
-        {
-            missles = 0;
-        }
-    }
+    
 
     IEnumerator MissleLaunching()
     {
         while (true)
         {
             Instantiate(missle, bulletSpawn.position, bulletSpawn.rotation);
-            missles++;
+            GameObject.Find("MissleCounter").GetComponent<MissleCounter>().missles++;
             yield return new WaitForSeconds(5);
         }
         
     }
 
-    void OnGUI()
-    {
-        GUI.Box(new Rect(10, 10, 100, 25), "Missles: " + missles.ToString());
-    }
+    
 
 }

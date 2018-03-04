@@ -34,7 +34,7 @@ public class HomingMissle : MonoBehaviour {
 
         //Debug.Log("existTime:" + existTime);
 
-        speed = 5.0f + (existTime / 20);
+        speed = 5.0f + (existTime / 10);
 
         Vector2 direction = (Vector2)target.position - rb.position;
 
@@ -61,9 +61,12 @@ public class HomingMissle : MonoBehaviour {
 
         if (col.gameObject.tag == "Player")
         {
-            GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
+            GameObject.Destroy(gameObject);
+            GameObject[] missles = GameObject.FindGameObjectsWithTag("Missle");
+            foreach (GameObject missle in missles)
+                Destroy(missle);
+            GameObject.Find("MissleCounter").GetComponent<MissleCounter>().missles = 0;
             col.gameObject.GetComponent<PlayerMovement>().Respawn();
-            GameObject.Destroy(gameObject, 0);
         }
     }
 }
