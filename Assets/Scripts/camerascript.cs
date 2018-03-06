@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class camerascript : MonoBehaviour {
 

@@ -1,15 +1,17 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Transform myTransform;
-    public float speed = 15f;
+    public ObscuredFloat speed = 15f;
     private Rigidbody2D rb;
     private bool facingRight = true;
     private Vector2 move;
-    float moveHorizontal;
+    private float moveHorizontal;
     public Transform trans;
     public bool spawned = false;
     public Vector2 spawn;
@@ -28,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         if (spawned == false && GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>() != null)
         {
             GetComponent<Transform>().position = GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
-            spawn = GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
+            spawn = (Vector2)GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
             spawned = true;
         }
 
@@ -73,6 +75,4 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = spawn;
     }
-    
-
 }

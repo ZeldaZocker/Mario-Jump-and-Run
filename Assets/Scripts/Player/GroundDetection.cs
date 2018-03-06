@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat;
+using CodeStage.AntiCheat.ObscuredTypes;
 
 public class GroundDetection : MonoBehaviour
 {
@@ -10,8 +12,8 @@ public class GroundDetection : MonoBehaviour
     public Transform groundCheck;
     public jump jump;
     public Vector2 size = new Vector2(.6f, .2f);
-    public float angle = 0.0f;
-    public bool onGround;
+    public ObscuredFloat angle = 0.0f;
+    public ObscuredBool onGround;
 
     void Start()
     {

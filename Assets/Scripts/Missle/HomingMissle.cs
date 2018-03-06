@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
+
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,10 +11,10 @@ public class HomingMissle : MonoBehaviour {
 
     public Transform target;
     private Rigidbody2D rb;
-    public float speed;
-    public float rotateSpeed = 200.0f;
-    public float startTime;
-    public float existTime;
+    public ObscuredFloat speed;
+    public ObscuredFloat rotateSpeed = 200.0f;
+    public ObscuredFloat startTime;
+    public ObscuredFloat existTime;
 
 
     void Start () {
