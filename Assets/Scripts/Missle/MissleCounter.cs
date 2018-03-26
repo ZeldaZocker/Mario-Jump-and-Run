@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class MissleCounter : MonoBehaviour {
 
 
 
-    public int missles = 0;
-    public int record = 0;
+    public ObscuredInt missles = 0;
+    public ObscuredInt record = 0;
 
+    private void Start()
+    {
+        record = ObscuredPrefs.GetInt("record");
+    }
 
     void Update()
     {
@@ -20,6 +26,7 @@ public class MissleCounter : MonoBehaviour {
         if (record < missles)
         {
             record = missles;
+            ObscuredPrefs.SetInt("record", record);
         }
     }
 

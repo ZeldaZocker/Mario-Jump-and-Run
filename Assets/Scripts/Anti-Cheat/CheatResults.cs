@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class CheatResults : MonoBehaviour {
 
@@ -15,7 +16,7 @@ public class CheatResults : MonoBehaviour {
 
     public void Ban()
     {
-        PlayerPrefs.SetInt("banned", 1);
+        ObscuredPrefs.SetInt("banned", 1);
     }
 
 }

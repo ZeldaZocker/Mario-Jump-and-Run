@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class MusicScript : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class MusicScript : MonoBehaviour
         m_MyAudioSource = GetComponent<AudioSource>();
 
         //Wenn die Musik beim letzten Speichern aus war:
-        if (PlayerPrefs.GetInt("musicEnabled") == 0)
+        if (ObscuredPrefs.GetInt("musicEnabled") == 0)
         {
             GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_Play = false;
             if (GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_MyAudioSource == null)
@@ -30,7 +32,7 @@ public class MusicScript : MonoBehaviour
         }
 
         //Wenn die Musik beim letzten Speichern an war:
-        else if (PlayerPrefs.GetInt("musicEnabled") == 1)
+        else if (ObscuredPrefs.GetInt("musicEnabled") == 1)
         {
             GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_Play = true;
             if (GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_MyAudioSource == null)
@@ -51,13 +53,13 @@ public class MusicScript : MonoBehaviour
             //Wenn er sich unterscheidet und m_Play false ist wird false gespeichert.
             if (!GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_Play)
             {
-                PlayerPrefs.SetInt("musicEnabled", 0);
+                ObscuredPrefs.SetInt("musicEnabled", 0);
                 Debug.Log("Saved: False!");
             }
             //Wenn er sich unterscheidet und m_Play true ist wird true gespeichert.
             else
             {
-                PlayerPrefs.SetInt("musicEnabled", 1);
+                ObscuredPrefs.SetInt("musicEnabled", 1);
                 Debug.Log("Saved: True!");
             }
             //Und dann actualSettings wieder an m_Play angepasst.
