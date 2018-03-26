@@ -7,7 +7,7 @@ using CodeStage.AntiCheat;
 public class camerascript : MonoBehaviour {
 
     public List<Transform> targets;
-    public Vector3 offset;
+    public ObscuredVector3 offset = new Vector3(2, 2, -1);
 
 	void LateUpdate () {
 
@@ -16,9 +16,9 @@ public class camerascript : MonoBehaviour {
             return;
         }
 
-        Vector3 centerPoint = GetCenterPoint();
+        ObscuredVector3 centerPoint = GetCenterPoint();
 
-        Vector3 newPosition = centerPoint + offset;
+        ObscuredVector3 newPosition = centerPoint + offset;
 
         transform.position = newPosition;
         
@@ -30,7 +30,7 @@ public class camerascript : MonoBehaviour {
         targets[0] = GameObject.Find("Player").GetComponent<Transform>();
     }
 
-    Vector3 GetCenterPoint()
+    ObscuredVector3 GetCenterPoint()
     {
         if (targets.Count == 1)
         {

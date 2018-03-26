@@ -1,12 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 public class PlayPrefDelete : MonoBehaviour {
 
 	//Zum initialisieren
-	void Start () {
-        PlayerPrefs.DeleteAll();
+	void LateUpdate () {
+        ObscuredPrefs.DeleteAll();
     }
 
 }
