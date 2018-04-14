@@ -20,15 +20,13 @@ public class TerminalInputHandler
                 return;
             }
         }
-
-        //CONSOLE KEY!!
         if (Input.GetKeyDown(KeyCode.Caret))
         {
             terminal.ToggleTerminal();
             return;
         }
         if (!terminal.displayTerminal) return;
-        if (Input.GetKey(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             terminal.OnBackSpacePressed();
             return;
