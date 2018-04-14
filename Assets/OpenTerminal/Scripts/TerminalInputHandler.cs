@@ -21,7 +21,7 @@ public class TerminalInputHandler
             }
         }
 
-        //CONSOLE KEY!!
+        //CONSOLE KEY!!!
         if (Input.GetKeyDown(KeyCode.Caret))
         {
             terminal.ToggleTerminal();
