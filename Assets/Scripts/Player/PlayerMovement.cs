@@ -7,7 +7,7 @@ using CodeStage.AntiCheat;
 public class PlayerMovement : MonoBehaviour
 {
     private Transform myTransform;
-    public ObscuredFloat speed = 15f;
+    public ObscuredFloat speed = 1f;
     private Rigidbody2D rb;
     private bool facingRight = true;
     private Vector2 move;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    
+
 
     void Update()
     {
@@ -49,7 +49,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-        void FixedUpdate() {
+    void FixedUpdate()
+    {
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
         rb.velocity = move;
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    public void Respawn ()
+    public void Respawn()
     {
         transform.position = spawn;
     }
