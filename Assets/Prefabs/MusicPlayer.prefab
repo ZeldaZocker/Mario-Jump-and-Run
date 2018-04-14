@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4651322000356344}
-  - component: {fileID: 114754468218457548}
+  - component: {fileID: 114224741494604912}
   - component: {fileID: 82732699107340608}
   m_Layer: 0
   m_Name: MusicPlayer
@@ -34,7 +34,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1238679739402268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 28.254238, y: 386.87668, z: 172.15147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -121,7 +121,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114754468218457548
+--- !u!114 &114224741494604912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,6 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6053e6ee7298c449b68f7e4785c7307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MyAudioSource: {fileID: 0}
+  m_MyAudioSource: {fileID: 82732699107340608}
   m_Play: 0
-  m_ToggleChange: 0
+  actualSetting: 0
