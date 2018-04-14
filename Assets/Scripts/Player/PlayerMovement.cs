@@ -7,7 +7,7 @@ using CodeStage.AntiCheat;
 public class PlayerMovement : MonoBehaviour
 {
     private Transform myTransform;
-    public ObscuredFloat speed = 15f;
+    public ObscuredFloat speed = 1f;
     private Rigidbody2D rb;
     private bool facingRight = true;
     private Vector2 move;
