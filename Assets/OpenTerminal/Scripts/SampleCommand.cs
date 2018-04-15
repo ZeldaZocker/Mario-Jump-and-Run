@@ -3,8 +3,8 @@ using UnityEngine;
 public class SampleCommand
 {
     [Command("debug", "Debugs a sample line in Unity Console")]
-    public void SampleDebug(string input)
+    public void SampleDebug()
     {
-        Debug.Log(input);
+        Debug.Log("Ich bin ein Beispiel!");
     }
 }

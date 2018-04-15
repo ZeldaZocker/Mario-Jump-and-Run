@@ -7,7 +7,7 @@ using CodeStage.AntiCheat;
 public class PlayerMovement : MonoBehaviour
 {
     private Transform myTransform;
-    public ObscuredFloat speed = 1f;
+    public ObscuredFloat speed = 10f;
     private Rigidbody2D rb;
     private bool facingRight = true;
     private Vector2 move;
@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform trans;
     public bool spawned = false;
     public Vector2 spawn;
-
-
 
 
     private void Start()
@@ -70,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+
     }
 
     public void Respawn()
