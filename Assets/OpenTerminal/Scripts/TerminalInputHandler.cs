@@ -20,7 +20,7 @@ public class TerminalInputHandler
                 return;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Caret))
+        if (Input.GetButtonDown("Console"))
         {
             terminal.ToggleTerminal();
             return;
