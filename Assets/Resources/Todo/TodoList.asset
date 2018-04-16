@@ -31,3 +31,9 @@ MonoBehaviour:
       index: 2
     task: Add Terminal
     isComplete: 0
+  - owner:
+      name: In Progress
+      color: {r: 0, g: 1, b: 1, a: 1}
+      index: 2
+    task: Add stats
+    isComplete: 0
