@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+            Time.timeScale += 0.5f;
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+            Time.timeScale -= 0.5f;
         if (spawned == false && GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>() != null)
         {
             GetComponent<Transform>().position = GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>().position;
@@ -74,6 +78,5 @@ public class PlayerMovement : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawn;
-        this.GetComponent<CharacterStats>().Reset();
     }
 }

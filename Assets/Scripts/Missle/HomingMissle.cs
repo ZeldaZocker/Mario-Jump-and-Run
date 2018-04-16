@@ -16,6 +16,9 @@ public class HomingMissle : MonoBehaviour
     public ObscuredFloat rotateSpeed = 200.0f;
     public ObscuredFloat startTime;
     public ObscuredFloat existTime;
+    public ObscuredFloat radius = 30.0f;
+    public ObscuredInt damage = 1;
+    public int destroyedMissles = 0;
 
 
     void Start()
@@ -55,24 +58,25 @@ public class HomingMissle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //explode code here
-
-        //Debug.Log(col);
-
-        /* if (col.gameObject.tag != "Player" && col.gameObject.tag != "Missle")
-         {
-             GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
-             GameObject.Destroy(gameObject, 0);
-         }*/
-
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.CompareTag("Player"))
         {
-            GameObject.FindWithTag("Player").GetComponent<CharacterStats>().TakenDamage(1);
-            GameObject.Destroy(gameObject);
-            GameObject[] missles = GameObject.FindGameObjectsWithTag("Missle");
-            foreach (GameObject missle in missles)
-                Destroy(missle);
-            GameObject.Find("MissleCounter").GetComponent<MissleCounter>().missles = 0;
+            //Send the damage taken event to the CharacterStats
+            col.GetComponent<CharacterStats>().TakenDamage(damage);
+
+            //Search for near missles and destory them
+            Collider2D[] nearMissles = Physics2D.OverlapCircleAll(col.GetComponent<Transform>().position, radius);
+            //Debug.Log(nearMissles.Length);
+            destroyedMissles = 0;
+            foreach (Collider2D collider in nearMissles)
+            {
+                if (collider.tag == "Missle")
+                {
+                    Destroy(collider.gameObject);
+                    ++destroyedMissles;
+                }
+            }
+            //How many Missles got destroyed
+            //Debug.Log("Destroyed: " + destroyedMissles);
         }
     }
 }
