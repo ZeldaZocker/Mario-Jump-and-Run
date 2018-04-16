@@ -26,14 +26,14 @@ MonoBehaviour:
     index: 3
   items:
   - owner:
-      name: In Progress
-      color: {r: 0, g: 1, b: 1, a: 1}
-      index: 2
-    task: Add Terminal
+      name: Normal
+      color: {r: 1, g: 1, b: 1, a: 1}
+      index: 0
+    task: Fix that boundary takes 2 lives
     isComplete: 0
   - owner:
-      name: In Progress
-      color: {r: 0, g: 1, b: 1, a: 1}
-      index: 2
-    task: Add stats
+      name: Normal
+      color: {r: 1, g: 1, b: 1, a: 1}
+      index: 0
+    task: Colorize the Terminal and add Commands
     isComplete: 0

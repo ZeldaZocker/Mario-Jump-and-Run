@@ -4,7 +4,8 @@ using UnityEngine;
 using CodeStage.AntiCheat.ObscuredTypes;
 using CodeStage.AntiCheat;
 
-public class MissleCounter : MonoBehaviour {
+public class MissleCounter : MonoBehaviour
+{
 
 
 
@@ -36,5 +37,9 @@ public class MissleCounter : MonoBehaviour {
         GUI.Box(new Rect(120, 10, 100, 25), "Record: " + record.ToString());
     }
 
+    public void Reset()
+    {
+        missles = 0;
+    }
 
 }

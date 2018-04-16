@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
 
 [System.Serializable]
 public class Stat
 {
 
     [SerializeField]
-    private int baseValue;
+    private ObscuredInt baseValue;
 
     public int GetValue()
     {

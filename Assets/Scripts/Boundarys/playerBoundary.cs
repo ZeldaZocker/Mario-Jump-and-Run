@@ -4,27 +4,30 @@ using UnityEngine;
 using CodeStage.AntiCheat;
 using CodeStage.AntiCheat.ObscuredTypes;
 
-public class playerBoundary : MonoBehaviour {
+public class playerBoundary : MonoBehaviour
+{
 
 
     public Transform tf;
     public Vector2 spawn;
 
-    void Start () {
-        if (GameObject.Find("Player").GetComponent<Transform>() != null)
+    void Start()
+    {
+        if (GameObject.FindWithTag("Player").GetComponent<Transform>() != null)
         {
-            tf = GameObject.Find("Player").GetComponent<Transform>();
+            tf = GameObject.FindWithTag("Player").GetComponent<Transform>();
         }
     }
     private void Update()
     {
-        if (GameObject.Find("Player").GetComponent<Transform>() != null && GameObject.Find("Player").GetComponent<PlayerMovement>().spawned == true)
+        if (GameObject.FindWithTag("Player").GetComponent<Transform>() != null && GameObject.Find("Player").GetComponent<PlayerMovement>().spawned == true)
         {
-            spawn = GameObject.Find("Player").GetComponent<PlayerMovement>().spawn;
+            spawn = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().spawn;
         }
     }
 
-    void LateUpdate () {
+    void LateUpdate()
+    {
         transform.position = new Vector3(tf.position.x, spawn.y - 10);
 
     }
@@ -33,8 +36,9 @@ public class playerBoundary : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().Respawn();
-            Debug.Log("Respawn");
+            col.GetComponent<Transform>().position = spawn;
+            col.GetComponent<CharacterStats>().TakenDamage(1);
+            //Debug.Log("Respawn");
         }
     }
 }

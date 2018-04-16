@@ -1,19 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using CodeStage.AntiCheat.ObscuredTypes;
+using CodeStage.AntiCheat;
+using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
 
-    public int maxHealt = 3;
-    public int currentHealth { get; private set; }
+    public ObscuredInt maxHealt = 3;
+    [SerializeField]
+    public ObscuredInt currentHealth;
 
     public Stat damage;
     public Stat armor;
 
 
 
+
     void Awake()
     {
         currentHealth = maxHealt;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void TakenDamage(int damage)
@@ -21,19 +29,17 @@ public class CharacterStats : MonoBehaviour
         damage -= armor.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         currentHealth -= damage;
-        Debug.Log(transform.name + " takes " + damage + " damage.");
+        //Debug.Log(transform.name + " takes " + damage + " damage.");
 
-        switch (currentHealth)
+        if (currentHealth == 2)
         {
-            case '2':
-                this.GetComponent<SpriteRenderer>().color = Color.magenta;
-                break;
-            case '1':
-                this.GetComponent<SpriteRenderer>().color = Color.red;
-                break;
+            this.GetComponent<SpriteRenderer>().color = Color.magenta;
         }
-
-        if (currentHealth <= 0)
+        else if (currentHealth == 1)
+        {
+            this.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else if (currentHealth <= 0)
         {
             Die();
         }
@@ -41,16 +47,19 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void Die()
     {
-        // Die in some way
-        // This method is meant to be overwritten
+        currentHealth = maxHealt;
+        this.GetComponent<SpriteRenderer>().color = Color.green;
+        GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();
         this.GetComponent<PlayerMovement>().Respawn();
-        Debug.Log(transform.name + " dies.");
+
+        //Debug.Log(transform.name + " dies.");
     }
 
-    public void Reset()
+    void OnGUI()
     {
-        currentHealth = maxHealt;
-        this.GetComponent<SpriteRenderer>().color = Color.white;
+        GUI.Box(new Rect(230, 10, 100, 25), "Leben: " + currentHealth);
     }
 
 }
+
+
