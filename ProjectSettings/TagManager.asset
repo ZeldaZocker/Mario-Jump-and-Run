@@ -18,6 +18,7 @@ TagManager:
   - savePoint
   - ground
   - Missle
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

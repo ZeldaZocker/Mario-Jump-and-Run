@@ -7,7 +7,8 @@ using CodeStage.AntiCheat;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HomingMissle : MonoBehaviour {
+public class HomingMissle : MonoBehaviour
+{
 
     public Transform target;
     private Rigidbody2D rb;
@@ -17,7 +18,8 @@ public class HomingMissle : MonoBehaviour {
     public ObscuredFloat existTime;
 
 
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.Find("Player").GetComponent<Transform>();
     }
@@ -33,7 +35,8 @@ public class HomingMissle : MonoBehaviour {
     }
 
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
 
         //Debug.Log("existTime:" + existTime);
 
@@ -48,7 +51,7 @@ public class HomingMissle : MonoBehaviour {
         rb.angularVelocity = -rotateAmount * rotateSpeed;
 
         rb.velocity = transform.up * speed;
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -56,20 +59,20 @@ public class HomingMissle : MonoBehaviour {
 
         //Debug.Log(col);
 
-       /* if (col.gameObject.tag != "Player" && col.gameObject.tag != "Missle")
-        {
-            GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
-            GameObject.Destroy(gameObject, 0);
-        }*/
+        /* if (col.gameObject.tag != "Player" && col.gameObject.tag != "Missle")
+         {
+             GameObject.Find("MissleLauncher").GetComponent<MissleLauncher>().missles--;
+             GameObject.Destroy(gameObject, 0);
+         }*/
 
         if (col.gameObject.tag == "Player")
         {
+            GameObject.FindWithTag("Player").GetComponent<CharacterStats>().TakenDamage(1);
             GameObject.Destroy(gameObject);
             GameObject[] missles = GameObject.FindGameObjectsWithTag("Missle");
             foreach (GameObject missle in missles)
                 Destroy(missle);
             GameObject.Find("MissleCounter").GetComponent<MissleCounter>().missles = 0;
-            col.gameObject.GetComponent<PlayerMovement>().Respawn();
         }
     }
 }

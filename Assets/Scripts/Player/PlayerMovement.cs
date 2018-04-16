@@ -7,7 +7,7 @@ using CodeStage.AntiCheat;
 public class PlayerMovement : MonoBehaviour
 {
     private Transform myTransform;
-    public ObscuredFloat speed = 10f;
+    public ObscuredFloat speed = 12f;
     private Rigidbody2D rb;
     private bool facingRight = true;
     private Vector2 move;
@@ -25,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (spawned == false && GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>() != null)
+        if (spawned == false && GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>() != null)
         {
-            GetComponent<Transform>().position = GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
-            spawn = (Vector2)GameObject.Find("PlayerSpawn(Clone)").GetComponent<Transform>().position;
+            GetComponent<Transform>().position = GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>().position;
+            spawn = (Vector2)GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>().position;
             spawned = true;
         }
 
@@ -74,5 +74,6 @@ public class PlayerMovement : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawn;
+        this.GetComponent<CharacterStats>().Reset();
     }
 }
