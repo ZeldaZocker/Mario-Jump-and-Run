@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeStage.AntiCheat.ObscuredTypes;
@@ -14,6 +14,8 @@ public class CharacterStats : MonoBehaviour
 
     public Stat damage;
     public Stat armor;
+    public Stat invulnerable;
+    public ObscuredBool isInvulnerable = false;
 
 
 
@@ -24,33 +26,41 @@ public class CharacterStats : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
+
+
     public void TakenDamage(int damage)
     {
-        damage -= armor.GetValue();
-        damage = Mathf.Clamp(damage, 0, int.MaxValue);
-        currentHealth -= damage;
-        //Debug.Log(transform.name + " takes " + damage + " damage.");
+        if (!isInvulnerable)
+        {
+            damage -= armor.GetValue();
+            damage = Mathf.Clamp(damage, 0, int.MaxValue);
+            currentHealth -= damage;
+            currentHealth = Mathf.Clamp(currentHealth, 0, int.MaxValue);
+            //Debug.Log(transform.name + " takes " + damage + " damage.");
 
-        if (currentHealth == 2)
-        {
-            this.GetComponent<SpriteRenderer>().color = Color.magenta;
-        }
-        else if (currentHealth == 1)
-        {
-            this.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        else if (currentHealth <= 0)
-        {
-            Die();
+            if (currentHealth == 2)
+            {
+                this.GetComponent<SpriteRenderer>().color = Color.magenta;
+            }
+            else if (currentHealth == 1)
+            {
+                this.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
-    public virtual void Die()
+    private void Die()
     {
-        currentHealth = maxHealt;
-        this.GetComponent<SpriteRenderer>().color = Color.green;
-        GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();
+        isInvulnerable = true;
         this.GetComponent<PlayerMovement>().Respawn();
+        this.GetComponent<SpriteRenderer>().color = Color.green;
+        currentHealth = maxHealt;
+        GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();
+        isInvulnerable = false;
 
         //Debug.Log(transform.name + " dies.");
     }

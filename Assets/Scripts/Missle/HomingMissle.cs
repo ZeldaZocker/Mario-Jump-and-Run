@@ -9,7 +9,7 @@ using CodeStage.AntiCheat;
 [RequireComponent(typeof(Rigidbody2D))]
 public class HomingMissle : MonoBehaviour
 {
-
+    public GameObject explosion;
     public Transform target;
     private Rigidbody2D rb;
     public ObscuredFloat speed;
@@ -61,6 +61,9 @@ public class HomingMissle : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             //Send the damage taken event to the CharacterStats
+
+            var effect = Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(effect.gameObject, 2f);
             col.GetComponent<CharacterStats>().TakenDamage(damage);
 
             //Search for near missles and destory them

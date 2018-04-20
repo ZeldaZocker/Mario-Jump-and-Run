@@ -545,6 +545,18 @@ MonoBehaviour:
       hiddenValue: 444444
       fakeValue: 0
       inited: 1
+  invulnerable:
+    baseValue:
+      currentCryptoKey: 0
+      hiddenValue: 0
+      fakeValue: 0
+      inited: 0
+  isInvulnerable:
+    currentCryptoKey: 215
+    hiddenValue: 98
+    fakeValue: 0
+    fakeValueChanged: 0
+    inited: 1
 --- !u!1 &557453609
 GameObject:
   m_ObjectHideFlags: 0
