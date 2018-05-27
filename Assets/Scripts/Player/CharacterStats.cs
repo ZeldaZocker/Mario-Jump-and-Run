@@ -56,7 +56,7 @@ public class CharacterStats : MonoBehaviour
     private void Die()
     {
         isInvulnerable = true;
-        this.GetComponent<PlayerMovement>().Respawn();
+        this.GetComponent<PlayerMovement>().Death();
         this.GetComponent<SpriteRenderer>().color = Color.green;
         currentHealth = maxHealt;
         GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();

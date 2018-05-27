@@ -27,7 +27,11 @@ public class camerascript : MonoBehaviour {
 
     private void Update()
     {
-        targets[0] = GameObject.Find("Player").GetComponent<Transform>();
+        if (GameObject.Find("Player").GetComponent<Transform>())
+        {
+            targets[0] = GameObject.Find("Player").GetComponent<Transform>();
+        }
+        else targets[0] = null;
     }
 
     ObscuredVector3 GetCenterPoint()
