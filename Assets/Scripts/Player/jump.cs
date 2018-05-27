@@ -24,7 +24,7 @@ public class jump : MonoBehaviour {
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && GameObject.Find("Player").GetComponent<PlayerMovement>().IsInputEnabled)
         {
             if (jumpheight != 0)
             {

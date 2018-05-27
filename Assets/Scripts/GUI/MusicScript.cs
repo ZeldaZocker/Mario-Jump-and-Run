@@ -12,7 +12,10 @@ public class MusicScript : MonoBehaviour
     public bool actualSetting;
 
 
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
 
     void Start()
@@ -50,13 +53,13 @@ public class MusicScript : MonoBehaviour
         if (actualSetting != GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_Play)
         {
 
-            //Wenn er sich unterscheidet und m_Play false ist wird false gespeichert.
+            //Wenn er sich unterscheidet und m_Play false ist wird false (0) gespeichert.
             if (!GameObject.Find("MusicPlayer").GetComponent<MusicScript>().m_Play)
             {
                 ObscuredPrefs.SetInt("musicEnabled", 0);
                 Debug.Log("Saved: False!");
             }
-            //Wenn er sich unterscheidet und m_Play true ist wird true gespeichert.
+            //Wenn er sich unterscheidet und m_Play true ist wird true (1) gespeichert.
             else
             {
                 ObscuredPrefs.SetInt("musicEnabled", 1);

@@ -11,9 +11,9 @@ public class Buttons : MonoBehaviour
     public void Play()
     {
         if (ObscuredPrefs.GetInt("banned") == 1)
-                Application.Quit();
+            Application.Quit();
         else
-             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 

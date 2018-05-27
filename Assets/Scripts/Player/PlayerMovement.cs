@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform trans;
     public bool spawned = false;
     public Vector2 spawn;
+    public bool IsInputEnabled = true;
+    public bool isDeath = false;
+    private float dPosX;
+    private float dPosY;
+    private float dPosZ;
 
 
     private void Start()
@@ -25,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        if (Input.GetKeyDown(KeyCode.KeypadPlus) && IsInputEnabled)
             Time.timeScale += 0.5f;
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && IsInputEnabled)
             Time.timeScale -= 0.5f;
         if (spawned == false && GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>() != null)
         {
@@ -44,20 +49,25 @@ public class PlayerMovement : MonoBehaviour
             // ... flip the player.
             Flip();
 
-        if (Input.GetButton("Cancel"))
+        if (Input.GetButton("Cancel") && IsInputEnabled)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
+        if (isDeath)
+            transform.position = new Vector3(dPosX, dPosY, dPosZ);
     }
 
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
-        rb.velocity = move;
-        //Debug.Log("moveHorizontal:" + moveHorizontal);
-        //Debug.Log("rb.velocity:" + rb.velocity);
+        if (IsInputEnabled)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
+            rb.velocity = move;
+            //Debug.Log("moveHorizontal:" + moveHorizontal);
+            //Debug.Log("rb.velocity:" + rb.velocity);
+        }
     }
 
 
@@ -78,5 +88,22 @@ public class PlayerMovement : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawn;
+    }
+
+    public void Death()
+    {
+        this.gameObject.GetComponent<Renderer>().enabled = false;
+        transform.localPosition.Set(0, 0, 0);
+        IsInputEnabled = false;
+        foreach (BoxCollider2D c in GetComponents<BoxCollider2D>())
+        {
+            c.enabled = false;
+        }
+        this.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        isDeath = true;
+        dPosX = transform.position.x;
+        dPosY = transform.position.y;
+        dPosZ = transform.position.z;
+        GameObject.Find("LevelChanger").GetComponent<LevelChanger>().FadeToLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }
