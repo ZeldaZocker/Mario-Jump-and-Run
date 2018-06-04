@@ -1,4 +1,4 @@
-﻿namespace BeastConsole {
+namespace BeastConsole {
 
     using UnityEngine;
     using System;
@@ -9,7 +9,9 @@
 
     public class Console : MonoBehaviour {
         private static Console _instance;
+#pragma warning disable IDE1006 // Benennungsstile
         public static Console instance
+#pragma warning restore IDE1006 // Benennungsstile
         {
             get {
                 if (!_instance)
@@ -27,6 +29,12 @@
 
 
         private void Awake() {
+            if (!_instance)
+                _instance = this;
+            else
+                Destroy(this.gameObject);
+
+            DontDestroyOnLoad(this.gameObject);
             var evsys = GameObject.FindObjectOfType<EventSystem>();
             if (!evsys) {
                 Debug.LogError("UnityEvent System not found in scene, manually add it.");
@@ -68,9 +76,9 @@
                 instance.m_backend.ExecuteLine(line);
         }
 
-        private void OnDisable() {
-            Destroy(m_consoleRoot.gameObject);
-        }
+        //private void OnDisable() {
+         //   Destroy(m_consoleRoot.gameObject);
+        //}
 
         /// <summary>
         /// Supports rich text.

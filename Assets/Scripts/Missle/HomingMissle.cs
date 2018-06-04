@@ -61,10 +61,13 @@ public class HomingMissle : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             //Send the damage taken event to the CharacterStats
-
             var effect = Instantiate(explosion, transform.position, transform.rotation);
             Destroy(effect.gameObject, 2f);
-            col.GetComponent<CharacterStats>().TakenDamage(damage);
+            if (col.GetComponent<CharacterStats>().isInvulnerable == false)
+            {
+                Debug.Log("Hitted");
+                col.GetComponent<CharacterStats>().TakenDamage(damage);
+            }
 
             //Search for near missles and destory them
             Collider2D[] nearMissles = Physics2D.OverlapCircleAll(col.GetComponent<Transform>().position, radius);

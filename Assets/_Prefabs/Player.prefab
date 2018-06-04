@@ -26,7 +26,12 @@ GameObject:
   - component: {fileID: 114668350579281806}
   - component: {fileID: 61443864507723862}
   - component: {fileID: 61406752206883716}
-  - component: {fileID: 68336429688692428}
+  - component: {fileID: 95593516907765308}
+  - component: {fileID: 114386124913998636}
+  - component: {fileID: 68392717622078106}
+  - component: {fileID: 58955982919382156}
+  - component: {fileID: 58265683900769468}
+  - component: {fileID: 114398896954591576}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -57,8 +62,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217334129137870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 1.946, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.205835, y: 2.522884, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 4858565394551280}
   m_Father: {fileID: 0}
@@ -71,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1229686586227434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7869, z: 0}
+  m_LocalPosition: {x: 0, y: -0.877, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4435733636163038}
@@ -97,32 +102,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61406752206883716
-BoxCollider2D:
+--- !u!58 &58265683900769468
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217334129137870}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010084391, y: -0.73327935}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.87, y: 1.57}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.484, y: -0.924}
   serializedVersion: 2
-  m_Size: {x: 0.700006, y: 0.040053606}
-  m_EdgeRadius: 0
---- !u!61 &61443864507723862
+  m_Radius: 0.007460276
+--- !u!58 &58955982919382156
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217334129137870}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.773, y: -0.924}
+  serializedVersion: 2
+  m_Radius: 0.007460276
+--- !u!61 &61406752206883716
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -134,20 +144,45 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.058571935, y: -0.8825486}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.87, y: 1.57}
+    oldSize: {x: 5.12, y: 2.56}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6195371, y: 0.0970366}
+  m_EdgeRadius: 0
+--- !u!61 &61443864507723862
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217334129137870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14561665, y: 0.036537528}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.87, y: 1.57}
+  m_Size: {x: 1.2613728, y: 1.9323342}
   m_EdgeRadius: 0
---- !u!68 &68336429688692428
+--- !u!68 &68392717622078106
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -162,11 +197,94 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.4341905, y: -0.78066194}
-  - {x: -0.43409705, y: -0.7836093}
-  - {x: -0.43494654, y: 0.7825681}
-  - {x: 0.4342749, y: 0.7820157}
-  - {x: 0.43505335, y: -0.7830136}
+  - {x: 0.49183625, y: 1.0119283}
+  - {x: 0.4919116, y: -0.92869556}
+  - {x: 0.48069796, y: -0.933331}
+  - {x: -0.77395725, y: -0.9342127}
+  - {x: -0.78162163, y: -0.9283735}
+  - {x: -0.7838313, y: 1.007953}
+  - {x: 0.49213505, y: 1.0117639}
+--- !u!95 &95593516907765308
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217334129137870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0491f2af51186f74a87160d26f3f4a7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114386124913998636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217334129137870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8422274fd3e98724899959c4a013b25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealt:
+    currentCryptoKey: 444444
+    hiddenValue: 444447
+    fakeValue: 3
+    inited: 1
+  currentHealth:
+    currentCryptoKey: 444444
+    hiddenValue: 444444
+    fakeValue: 0
+    inited: 1
+  damage:
+    baseValue:
+      currentCryptoKey: 444444
+      hiddenValue: 444444
+      fakeValue: 0
+      inited: 1
+  armor:
+    baseValue:
+      currentCryptoKey: 444444
+      hiddenValue: 444444
+      fakeValue: 0
+      inited: 1
+  invulnerable:
+    baseValue:
+      currentCryptoKey: 0
+      hiddenValue: 0
+      fakeValue: 0
+      inited: 0
+  isInvulnerable:
+    currentCryptoKey: 215
+    hiddenValue: 98
+    fakeValue: 0
+    fakeValueChanged: 1
+    inited: 1
+--- !u!114 &114398896954591576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217334129137870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9b9b5f52e898646901377a110974d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfHearts: 3
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: b016bec31a222ac45b7a3f3adb995808, type: 3}
+  emptyHeart: {fileID: 21300002, guid: b016bec31a222ac45b7a3f3adb995808, type: 3}
+  health: 0
 --- !u!114 &114452502706008434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,6 +300,7 @@ MonoBehaviour:
   rb: {fileID: 50183744812331178}
   grounded: 1
   doubleJump: 1
+  anim: {fileID: 0}
 --- !u!114 &114654910067774088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,8 +318,22 @@ MonoBehaviour:
   groundCheck: {fileID: 4858565394551280}
   jump: {fileID: 114452502706008434}
   size: {x: 0.6, y: 0.2}
-  angle: 0
-  onGround: 0
+  angle:
+    currentCryptoKey: 230887
+    hiddenValue:
+      b1: 231
+      b2: 133
+      b3: 3
+      b4: 0
+    hiddenValueOld: 
+    fakeValue: 0
+    inited: 1
+  onGround:
+    currentCryptoKey: 215
+    hiddenValue: 98
+    fakeValue: 0
+    fakeValueChanged: 1
+    inited: 1
 --- !u!114 &114668350579281806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,8 +345,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7fdc14893652d419b5e941a44689ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier:
+    currentCryptoKey: 230887
+    hiddenValue:
+      b1: 231
+      b2: 133
+      b3: 35
+      b4: 64
+    hiddenValueOld: 
+    fakeValue: 2.5
+    inited: 1
+  lowJumpMultiplier:
+    currentCryptoKey: 230887
+    hiddenValue:
+      b1: 231
+      b2: 133
+      b3: 3
+      b4: 64
+    hiddenValueOld: 
+    fakeValue: 2
+    inited: 1
 --- !u!114 &114751421581752006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,8 +376,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28219d14ae727849a59911661480562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
+  speed:
+    currentCryptoKey: 230887
+    hiddenValue:
+      b1: 231
+      b2: 133
+      b3: 67
+      b4: 65
+    hiddenValueOld: 
+    fakeValue: 12
+    inited: 1
   trans: {fileID: 0}
+  spawned: 0
+  spawn: {x: 0, y: 0}
+  IsInputEnabled: 1
+  isDeath: 0
 --- !u!212 &212236376119812128
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -261,7 +425,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 5d6af88abbfa9cf4ab1c0f8b560f4143, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cee0f3d723836fb45aff84dd2bc4b349, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

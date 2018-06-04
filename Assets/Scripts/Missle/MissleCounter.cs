@@ -26,9 +26,14 @@ public class MissleCounter : MonoBehaviour
 
         if (record < missles)
         {
-            record = missles;
-            ObscuredPrefs.SetInt("record", record);
+            UpdateRecord(missles);
         }
+    }
+
+    public void UpdateRecord(int missles)
+    {
+        record = missles;
+        ObscuredPrefs.SetInt("record", record);
     }
 
     void OnGUI()

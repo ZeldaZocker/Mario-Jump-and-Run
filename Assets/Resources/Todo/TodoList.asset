@@ -42,4 +42,10 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
       index: 0
     task: Add particles
+    isComplete: 1
+  - owner:
+      name: Urgent
+      color: {r: 1, g: 0, b: 0, a: 1}
+      index: 1
+    task: Healt System doesnt work
     isComplete: 0

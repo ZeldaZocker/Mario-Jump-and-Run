@@ -1,4 +1,4 @@
-﻿namespace BeastConsole.Backend {
+namespace BeastConsole.Backend {
 
     // Copyright (c) 2014 Cranium Software
     // SmartConsole
@@ -58,6 +58,7 @@
             RegisterCommand("list", "lists all currently registered console variables", this, ListCvars);
             RegisterCommand("print", "writes <string> to the console log", this, Echo);
             RegisterCommand("quit", "quit the game (not sure this works with iOS/Android)", this, Quit);
+            RegisterCommand("record", "quit the game (not sure this works with iOS/Android)", this, record);
             //RegisterCommand("help", "displays help information for console command where available", this, Help);
             // RegisterCommand("callstack.warning", "display the call stack for the last warning message", LastWarningCallStack);
             // RegisterCommand("callstack.error", "display the call stack for the last error message", LastErrorCallStack);
@@ -298,6 +299,13 @@
 
         private void Quit(string[] parameters) {
             Application.Quit();
+        }
+
+        private void record(string[] parameters)
+        {
+            //int[] parametersInt = Array.ConvertAll(parameters, int.Parse);
+            GameObject.Find("MissleCounter").GetComponent<MissleCounter>().UpdateRecord(Int32.Parse(parameters[1]));
+            WriteLine("Record wurde auf " + Int32.Parse(parameters[1]) + " gesetzt!");
         }
 
         private void ListCvars(string[] parameters) {
