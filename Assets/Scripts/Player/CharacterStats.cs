@@ -14,7 +14,6 @@ public class CharacterStats : MonoBehaviour
 
     public Stat damage;
     public Stat armor;
-    public Stat invulnerable;
     public ObscuredBool isInvulnerable = false;
 
 
@@ -23,41 +22,45 @@ public class CharacterStats : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealt;
-        this.GetComponent<SpriteRenderer>().color = Color.green;
+        //this.GetComponent<SpriteRenderer>().color = Color.green;
+        isInvulnerable = false;
     }
 
 
 
-    public void TakenDamage(int damage)
+    public IEnumerator TakenDamage(int damage)
     {
-        if (!isInvulnerable)
+        if (isInvulnerable == false)
         {
-            damage -= armor.GetValue();
+            //Debug.Log(damage);
+            //damage -= armor.GetValue();
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
             currentHealth -= damage;
             currentHealth = Mathf.Clamp(currentHealth, 0, int.MaxValue);
             //Debug.Log(transform.name + " takes " + damage + " damage.");
 
-            if (currentHealth == 2)
-            {
-                this.GetComponent<SpriteRenderer>().color = Color.magenta;
-            }
-            else if (currentHealth == 1)
-            {
-                this.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            else if (currentHealth <= 0)
+            isInvulnerable = true;
+            yield return new WaitForSeconds(1);
+            isInvulnerable = false;
+
+
+            if (currentHealth <= 0)
             {
                 Die();
             }
         }
     }
 
+    public void ResetInvulnerability()
+    {
+        isInvulnerable = true;
+    }
+
     private void Die()
     {
         isInvulnerable = true;
         this.GetComponent<PlayerMovement>().Death();
-        this.GetComponent<SpriteRenderer>().color = Color.green;
+        //this.GetComponent<SpriteRenderer>().color = Color.green;
         currentHealth = maxHealt;
         GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();
         isInvulnerable = false;
@@ -65,10 +68,12 @@ public class CharacterStats : MonoBehaviour
         //Debug.Log(transform.name + " dies.");
     }
 
-    void OnGUI()
-    {
-        GUI.Box(new Rect(230, 10, 100, 25), "Leben: " + currentHealth);
-    }
+
+    // Heart UI in HeartSystem vorhanden!
+    //void OnGUI()
+    //{
+    //   GUI.Box(new Rect(230, 10, 100, 25), "Leben: " + currentHealth);
+    //}
 
 }
 

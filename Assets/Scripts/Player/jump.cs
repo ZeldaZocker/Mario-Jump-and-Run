@@ -1,13 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class jump : MonoBehaviour {
+public class Jump : MonoBehaviour {
 
     public float jumpheight;
     public Rigidbody2D rb;
     public bool grounded;
     public bool doubleJump;
+    public Animator anim;
 
     void Awake()
     {
@@ -18,29 +19,34 @@ public class jump : MonoBehaviour {
     {
         grounded = true;
         doubleJump = true;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (grounded)
+            anim.SetBool("isGrounded", true);
+        else
+            anim.SetBool("isGrounded", false);
 
 
         if (Input.GetKeyDown(KeyCode.Space) && GameObject.Find("Player").GetComponent<PlayerMovement>().IsInputEnabled)
         {
             if (jumpheight != 0)
             {
-                Jump();
+                _Jump();
             }
             if (jumpheight == 0)
             {
                 jumpheight = 2;
-                Jump();
+                _Jump();
             }
         }
     }
 
 
 
-    void Jump()
+    void _Jump()
     {
         if (grounded)
         {
@@ -56,7 +62,7 @@ public class jump : MonoBehaviour {
         }
     }
     
-    public void jumpReset()
+    public void JumpReset()
     {
         grounded = true;
         doubleJump = true;

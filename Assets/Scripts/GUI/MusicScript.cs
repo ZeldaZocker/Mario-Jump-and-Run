@@ -4,6 +4,7 @@ using CodeStage.AntiCheat;
 
 public class MusicScript : MonoBehaviour
 {
+    private static MusicScript _instance;
     public AudioSource m_MyAudioSource;
 
     //Play the music
@@ -15,6 +16,11 @@ public class MusicScript : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        if (!_instance)
+            _instance = this;
+        else
+            Destroy(this.gameObject);
     }
 
 

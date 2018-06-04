@@ -20,11 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private float dPosX;
     private float dPosY;
     private float dPosZ;
+    private Animator anim;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
 
@@ -55,16 +57,30 @@ public class PlayerMovement : MonoBehaviour
         }
         if (isDeath)
             transform.position = new Vector3(dPosX, dPosY, dPosZ);
+
+        if (rb.velocity.x != 0)
+            anim.SetBool("isMoving", true);
+        else
+
+            anim.SetBool("isMoving", false);
     }
 
 
     void FixedUpdate()
     {
+        
+        
+
+
         if (IsInputEnabled)
         {
+
             float moveHorizontal = Input.GetAxis("Horizontal");
             Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
             rb.velocity = move;
+
+            
+
             //Debug.Log("moveHorizontal:" + moveHorizontal);
             //Debug.Log("rb.velocity:" + rb.velocity);
         }
@@ -99,7 +115,11 @@ public class PlayerMovement : MonoBehaviour
         {
             c.enabled = false;
         }
-        this.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        foreach (CircleCollider2D c in GetComponents<CircleCollider2D>())
+        {
+            c.enabled = false;
+        }
+        //this.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
         isDeath = true;
         dPosX = transform.position.x;
         dPosY = transform.position.y;
