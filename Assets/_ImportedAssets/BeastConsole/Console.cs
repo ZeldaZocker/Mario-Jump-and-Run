@@ -12,6 +12,7 @@ namespace BeastConsole {
 #pragma warning disable IDE1006 // Benennungsstile
         public static Console instance
 #pragma warning restore IDE1006 // Benennungsstile
+        
         {
             get {
                 if (!_instance)
