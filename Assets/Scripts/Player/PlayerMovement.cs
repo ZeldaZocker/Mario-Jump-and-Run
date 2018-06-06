@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
+    
 
     private void Flip()
     {
@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Death()
     {
+        this.gameObject.GetComponent<CharacterStats>().isInvulnerable = true;
         this.gameObject.GetComponent<Renderer>().enabled = false;
         transform.localPosition.Set(0, 0, 0);
         IsInputEnabled = false;
@@ -119,7 +120,10 @@ public class PlayerMovement : MonoBehaviour
         {
             c.enabled = false;
         }
-        //this.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        foreach (EdgeCollider2D c in GetComponents<EdgeCollider2D>())
+        {
+            c.enabled = false;
+        }
         isDeath = true;
         dPosX = transform.position.x;
         dPosY = transform.position.y;

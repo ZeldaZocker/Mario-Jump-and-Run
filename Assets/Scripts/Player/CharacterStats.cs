@@ -28,11 +28,11 @@ public class CharacterStats : MonoBehaviour
 
 
 
-    public IEnumerator TakenDamage(int damage)
+    public IEnumerator TakenDamage(ObscuredInt damage)
     {
         if (isInvulnerable == false)
         {
-            //Debug.Log(damage);
+            Debug.Log(damage);
             //damage -= armor.GetValue();
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
             currentHealth -= damage;
@@ -40,14 +40,17 @@ public class CharacterStats : MonoBehaviour
             //Debug.Log(transform.name + " takes " + damage + " damage.");
 
             isInvulnerable = true;
-            yield return new WaitForSeconds(1);
-            isInvulnerable = false;
-
 
             if (currentHealth <= 0)
             {
                 Die();
             }
+
+            yield return new WaitForSeconds(1);
+
+            isInvulnerable = false;
+            //Debug.Log("activated");
+            
         }
     }
 
@@ -61,7 +64,6 @@ public class CharacterStats : MonoBehaviour
         isInvulnerable = true;
         this.GetComponent<PlayerMovement>().Death();
         //this.GetComponent<SpriteRenderer>().color = Color.green;
-        currentHealth = maxHealt;
         GameObject.Find("MissleCounter").GetComponent<MissleCounter>().Reset();
         isInvulnerable = false;
 

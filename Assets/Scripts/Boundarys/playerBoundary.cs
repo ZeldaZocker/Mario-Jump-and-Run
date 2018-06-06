@@ -10,6 +10,7 @@ public class playerBoundary : MonoBehaviour
 
     public Transform tf;
     public Vector2 spawn;
+    private ObscuredInt damage = 1;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class playerBoundary : MonoBehaviour
         if (col.tag == "Player")
         {
             col.GetComponent<Transform>().position = spawn;
-            col.GetComponent<CharacterStats>().TakenDamage(1);
+            StartCoroutine(col.GetComponent<CharacterStats>().TakenDamage(damage));
             //Debug.Log("Respawn");
         }
     }

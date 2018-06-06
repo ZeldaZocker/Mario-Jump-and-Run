@@ -56,17 +56,17 @@ public class HomingMissle : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private IEnumerator OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             //Send the damage taken event to the CharacterStats
             var effect = Instantiate(explosion, transform.position, transform.rotation);
-            Destroy(effect.gameObject, 2f);
+            Destroy(effect.gameObject, 1.7f);
             if (col.GetComponent<CharacterStats>().isInvulnerable == false)
             {
-                Debug.Log("Hitted");
-                col.GetComponent<CharacterStats>().TakenDamage(damage);
+                //Debug.Log("Hitted");
+                StartCoroutine(col.GetComponent<CharacterStats>().TakenDamage(damage));
             }
 
             //Search for near missles and destory them
@@ -75,12 +75,17 @@ public class HomingMissle : MonoBehaviour
             destroyedMissles = 0;
             foreach (Collider2D collider in nearMissles)
             {
-                if (collider.tag == "Missle")
+                if (collider.tag == "Missle" && (collider.gameObject != this.gameObject))
                 {
                     Destroy(collider.gameObject);
                     ++destroyedMissles;
                 }
             }
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            yield return new WaitForSeconds(1);
+            Destroy(this.gameObject, 0f);
+            //Debug.Log("Des");
             //How many Missles got destroyed
             //Debug.Log("Destroyed: " + destroyedMissles);
         }
