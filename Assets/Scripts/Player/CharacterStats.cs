@@ -14,16 +14,20 @@ public class CharacterStats : MonoBehaviour
 
     public Stat damage;
     public Stat armor;
-    public ObscuredBool isInvulnerable = false;
+    public ObscuredBool isInvulnerable;
 
 
+
+    private void Update()
+    {
+        Debug.Log(isInvulnerable);
+    }
 
 
     void Awake()
     {
         currentHealth = maxHealt;
         //this.GetComponent<SpriteRenderer>().color = Color.green;
-        isInvulnerable = false;
     }
 
 
@@ -32,7 +36,7 @@ public class CharacterStats : MonoBehaviour
     {
         if (isInvulnerable == false)
         {
-            Debug.Log(damage);
+            //Debug.Log(damage);
             //damage -= armor.GetValue();
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
             currentHealth -= damage;

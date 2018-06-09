@@ -1,4 +1,4 @@
-﻿namespace BeastConsole.GUI {
+namespace BeastConsole.GUI {
 
     using System;
     using System.Collections;

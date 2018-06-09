@@ -95,6 +95,6 @@ public class MusicScript : MonoBehaviour
     void OnGUI()
     {
         //Switch this toggle to activate and deactivate the parent GameObject
-        m_Play = GUI.Toggle(new Rect(12, 40, 100, 25), m_Play, "Play Music");
+        m_Play = GUI.Toggle(new Rect(1560, 1000, 100, 25), m_Play, "Play Music");
     }
 }

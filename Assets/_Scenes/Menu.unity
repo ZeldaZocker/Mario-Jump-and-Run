@@ -308,7 +308,7 @@ Prefab:
     - target: {fileID: 114012697534647642, guid: dbf151f91518cfd42bc304bde69a641b,
         type: 2}
       propertyPath: consoleOptions.ConsoleKey
-      value: 46
+      value: 44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbf151f91518cfd42bc304bde69a641b, type: 2}

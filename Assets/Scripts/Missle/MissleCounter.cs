@@ -38,13 +38,12 @@ public class MissleCounter : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(10, 10, 100, 25), "Missles: " + missles.ToString());
-        GUI.Box(new Rect(120, 10, 100, 25), "Record: " + record.ToString());
+       GUI.Box(new Rect(1670, 1000, 100, 25), "Missles: " + missles.ToString());
+       GUI.Box(new Rect(1780, 1000, 100, 25), "Record: " + record.ToString());
     }
 
     public void Reset()
     {
         missles = 0;
     }
-
 }

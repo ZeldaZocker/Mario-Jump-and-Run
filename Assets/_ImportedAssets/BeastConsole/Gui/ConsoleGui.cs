@@ -1,4 +1,4 @@
-﻿namespace BeastConsole.GUI {
+namespace BeastConsole.GUI {
 
     using System.Collections;
     using System.Collections.Generic;
@@ -7,6 +7,7 @@
     using BeastConsole.Backend.Internal;
     using UnityEngine;
     using UnityEngine.EventSystems;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
 
     internal class ConsoleGui : MonoBehaviour {
@@ -14,7 +15,7 @@
         internal Options m_options;
         [System.Serializable]
         internal class Options {
-            public KeyCode ConsoleKey = KeyCode.BackQuote;
+            public KeyCode ConsoleKey = KeyCode.Period;
             public float TweenTime = 0.4f;
             public int MaxConsoleLines = 120;
             public float LinePadding = 10;
@@ -246,6 +247,9 @@
             m_inputactive = m_inputField.gameObject == m_selected && m_inputField.isFocused;
 
             if (Input.GetKeyDown(m_options.ConsoleKey)) {
+                //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                //if (SceneManager.GetActiveScene().buildIndex == 1)
+                    //GameObject.Find("Player").GetComponent<PlayerMovement>().IsInputEnabled = false;
                 s_showConsole = true;
                 m_currentEXECUTIONhistoryIndex = m_backend.m_commandHistory.Count - 1;
                 m_inputField.text = "";

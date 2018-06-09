@@ -20,6 +20,7 @@ namespace BeastConsole.Backend {
     using System;
     using System.Reflection;
     using System.Linq;
+    using UnityEngine.SceneManagement;
 
     // SE: broadly patterned after the debug console implementation from GLToy...
     // https://code.google.com/p/gltoy/source/browse/trunk/GLToy/Independent/Core/Console/GLToy_Console.h
@@ -58,7 +59,10 @@ namespace BeastConsole.Backend {
             RegisterCommand("list", "lists all currently registered console variables", this, ListCvars);
             RegisterCommand("print", "writes <string> to the console log", this, Echo);
             RegisterCommand("quit", "quit the game (not sure this works with iOS/Android)", this, Quit);
-            RegisterCommand("record", "quit the game (not sure this works with iOS/Android)", this, record);
+            RegisterCommand("record", "set the record value", this, record);
+            RegisterCommand("god", "Set god mode", this, god);
+            RegisterCommand("respawn", "Let respawn the Player", this, respawn);
+            RegisterCommand("kill", "Kill the Player", this, kill);
             //RegisterCommand("help", "displays help information for console command where available", this, Help);
             // RegisterCommand("callstack.warning", "display the call stack for the last warning message", LastWarningCallStack);
             // RegisterCommand("callstack.error", "display the call stack for the last error message", LastErrorCallStack);
@@ -301,11 +305,81 @@ namespace BeastConsole.Backend {
             Application.Quit();
         }
 
+        private void respawn(string[] parameters)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                GameObject.Find("Player").GetComponent<PlayerMovement>().Respawn();
+                WriteLine("Respawned the Player!");
+            }
+            else
+            {
+                WriteLine("You're not Ingame!");
+            }
+        }
+
+        private void kill(string[] parameters)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                GameObject.Find("Player").GetComponent<PlayerMovement>().Death();
+                WriteLine("Killed the Player!");
+            }
+            else
+            {
+                WriteLine("You're not Ingame!");
+            }
+        }
+
         private void record(string[] parameters)
         {
-            //int[] parametersInt = Array.ConvertAll(parameters, int.Parse);
-            GameObject.Find("MissleCounter").GetComponent<MissleCounter>().UpdateRecord(Int32.Parse(parameters[1]));
-            WriteLine("Record wurde auf " + Int32.Parse(parameters[1]) + " gesetzt!");
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                GameObject.Find("MissleCounter").GetComponent<MissleCounter>().UpdateRecord(Int32.Parse(parameters[1]));
+                WriteLine("Record wurde auf " + Int32.Parse(parameters[1]) + " gesetzt!");
+            }
+        }
+
+        private void god(string[] parameters)
+        {
+
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                if (parameters.Length == 1)
+                {
+                    if (GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable == true)
+                    {
+                        GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable = false;
+                        WriteLine("God ist jetzt false!");
+                    }
+
+                    else if (GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable == false)
+                    {
+                        GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable = true;
+                        WriteLine("God ist jetzt true!");
+                    }
+                }
+
+                else if (parameters.Length == 2) { 
+                    if (parameters[1] == "true")
+                    {
+                        GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable = true;
+                        WriteLine("God ist jetzt true!");
+                    }
+
+                    else if (parameters[1] == "false")
+                    {
+                        GameObject.Find("Player").GetComponent<CharacterStats>().isInvulnerable = false;
+                        WriteLine("God ist jetzt false!");
+                    }
+                }
+
+                else
+                {
+                    WriteLine("Usage: god [true / false]");
+                }
+            }
+            else { WriteLine("You're not Ingame!"); }
         }
 
         private void ListCvars(string[] parameters) {

@@ -6,6 +6,8 @@ using CodeStage.AntiCheat;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    //Variables
     private Transform myTransform;
     public ObscuredFloat speed = 12f;
     private Rigidbody2D rb;
@@ -23,71 +25,71 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
 
+
+    //Start
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
     }
 
-
+    //Update
     void Update()
+    {
+        MovementUpdate();
+        SetSpawn();
+        SetAnim();
+        CheckForDeath();
+
+        if (Input.GetButton("Cancel") && IsInputEnabled)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+    }
+
+    //Fixed Update
+    void FixedUpdate()
+    {
+        MovementFixedUpdate();
+    }
+
+
+    private void MovementUpdate()
     {
         if (Input.GetKeyDown(KeyCode.KeypadPlus) && IsInputEnabled)
             Time.timeScale += 0.5f;
         if (Input.GetKeyDown(KeyCode.KeypadMinus) && IsInputEnabled)
             Time.timeScale -= 0.5f;
+
+        if (Input.GetAxis("Horizontal") > 0 && !facingRight && IsInputEnabled)
+            // ... flip the player.
+            Flip();
+        // Otherwise if the input is moving the player left and the player is facing right...
+        else if (Input.GetAxis("Horizontal") < 0 && facingRight && IsInputEnabled)
+            // ... flip the player.
+            Flip();
+    }
+
+    private void MovementFixedUpdate()
+    {
+        if (IsInputEnabled)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
+            rb.velocity = move;
+        }
+    }
+
+
+    private void SetSpawn()
+    {
         if (spawned == false && GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>() != null)
         {
             GetComponent<Transform>().position = GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>().position;
             spawn = (Vector2)GameObject.FindWithTag("PlayerSpawn").GetComponent<Transform>().position;
             spawned = true;
         }
-
-        if (Input.GetAxis("Horizontal") > 0 && !facingRight)
-            // ... flip the player.
-            Flip();
-        // Otherwise if the input is moving the player left and the player is facing right...
-        else if (Input.GetAxis("Horizontal") < 0 && facingRight)
-            // ... flip the player.
-            Flip();
-
-        if (Input.GetButton("Cancel") && IsInputEnabled)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
-        if (isDeath)
-            transform.position = new Vector3(dPosX, dPosY, dPosZ);
-
-        if (rb.velocity.x != 0)
-            anim.SetBool("isMoving", true);
-        else
-
-            anim.SetBool("isMoving", false);
     }
-
-
-    void FixedUpdate()
-    {
-        
-        
-
-
-        if (IsInputEnabled)
-        {
-
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            Vector2 move = new Vector2(moveHorizontal * speed, rb.velocity.y);
-            rb.velocity = move;
-
-            
-
-            //Debug.Log("moveHorizontal:" + moveHorizontal);
-            //Debug.Log("rb.velocity:" + rb.velocity);
-        }
-    }
-
-
-    
 
     private void Flip()
     {
@@ -101,10 +103,25 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void SetAnim()
+    {
+        if (rb.velocity.x != 0)
+            anim.SetBool("isMoving", true);
+        else
+            anim.SetBool("isMoving", false);
+    }
+
+    private void CheckForDeath()
+    {
+        if (isDeath)
+            transform.position = new Vector3(dPosX, dPosY, dPosZ);
+    }
+
     public void Respawn()
     {
         transform.position = spawn;
     }
+
 
     public void Death()
     {
